@@ -116,4 +116,8 @@ Now you can communicate encrypted from local Devices to your local Broker and co
 Helpful to embed low power nodes i.e. sensors & arduinos which don't allow TLS encryption.
 
 # Helpful snippets
+
+```Shell
+# Check a key
 openssl x509 -noout -text -in client01.pem
+```
