@@ -1,0 +1,36 @@
+# Simple configuration for a local broker with
+# MQTT@Port 1883
+# Websocket@9001
+# Encrypted Bridge to Remote Broker
+
+autosave_interval 1800
+persistence true
+persistence_file m2.db
+persistence_location /var/mosquitto/
+connection_messages true
+log_timestamp true
+
+# mqtt port
+listener 1883
+
+# the websocket port
+listener 9001 127.0.0.1
+protocol websockets
+
+# Bridge to remote Broker example.com
+connection bridge-to-remote
+bridge_cafile /etc/mosquitto/tls/cacert.pem
+bridge_certfile /etc/mosquitto/tls/local.broker.cert.pem
+bridge_keyfile /etc/mosquitto/tls/local.brocker.key.pem
+# Path to the remote Broker:
+address example.com:8883
+cleansession false
+# client ID to be used at remote Broker:
+clientid local.brocker
+start_type automatic
+notifications false
+try_private true
+# Publish everything which is published to topic /public/# on local Broker to remote Broker into topic /public/from_local.brocker/ with QOS2:
+topic # out 2 /public/ /public/from_local.brocker/
+# Subscribe to everything which is published to topic /public/sendout/ on remote Broker to local topic /public/fromRemote/ with QOS2:
+topic # in 2 /public/fromRemote/ /public/sendout/
