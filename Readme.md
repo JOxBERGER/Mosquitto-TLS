@@ -2,8 +2,8 @@
 # How to generate a root CA to sign Mosquitto Broker and Client instances
 
 __Warning: Root CA keys won't be encrypted and be valid for 10 years!  
-This configuration is helpfull for development.
-But insecure for production."__
+This configuration is help full for development.
+But insecure for production.__
 
 Initial description found here:  
 https://wiki.ubuntuusers.de/CA  
@@ -75,7 +75,7 @@ keyfile /etc/mosquitto/tls/example.com.key.pem
 require_certificate true
 ```
 
-### 6. Restart mosquitto and see if it works.
+### 6. Restart Mosquitto and see if it works.
 ```Shell
 # eventually stop mosquitto with your os service
 # service mosquitto stop
@@ -102,7 +102,7 @@ Publish
 ```Shell
 mosquitto_pub -h example.com -p 8883 -t /test01 -m "HELLO" --cafile cacert.pem --cert client01.cert.pem --key client01.key.pem
 ```
-Have a eye on your mosquitto shell in case you encounter any errors.
+Have a eye on the shell running your Mosquitto Broker in case something goes wrong.
 
 ## Connect a local Broker
 
@@ -115,5 +115,5 @@ See __mosquitto.conf.bridge__ how to setup a Bridge.
 Now you can communicate encrypted from local Devices to your local Broker and communicate with the remote Broker encrypted.
 Helpful to embed low power nodes i.e. sensors & arduinos which don't allow TLS encryption.
 
-# Helpful Snipets
+# Helpful snippets
 openssl x509 -noout -text -in client01.pem
